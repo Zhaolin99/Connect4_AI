@@ -13,18 +13,6 @@ from copy import deepcopy
 import threading
 
 def time_limit(func, args, time_):
-
-	'''Python tries very, very hard to make sure you can't kill threads,
-	but with enough effort, anything is possible. Here, we uses traces
-	to inject a system exit exception on the next line of whatever the
-	thread is executing. I am fairly certain this can kill anything.
-
-	You probably should not use this function because killing threads
-	is bad practice. I am only doing it here because we need to make sure
-	we have a level playing field ie no agent can cheat and get extra time
-	per moves. If you want to do something similar you should keep an exit
-	flag in your code, but asking every student to keep exit flags in their
-	code in not feasible. This took an embarassingly long time to figure out.'''
 	t = thread_with_trace(target=func, args=args)
 	t.start()
 	t.join(time_)
@@ -123,7 +111,6 @@ class connect4():
 		# Find extrema to consider
 		i = self.topPosition[j] + 1
 		#print("GameOver i and j", i, j)
-		#print("self.shape[1]-1 is", self.shape[1]-1)
 		minRowIndex = max(j - 3, 0)
 		maxRowIndex = min(j + 3, self.shape[1]-1)
 		maxColumnIndex = max(i - 3, 0)
