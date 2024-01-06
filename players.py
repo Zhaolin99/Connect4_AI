@@ -694,7 +694,6 @@ class alphaBetaAI(connect4Player):  # TODO
         for child in order_indices:
             # print("current child, self_player",  child, self_player)
 
-            # print("after init move", env.board)
             x = self.alphaBeta(env, child, depth - 1, True, weighted_matrix, self_player, opposite_player,1000000,-1000000)
             # value = max(value, x)
 
@@ -703,12 +702,10 @@ class alphaBetaAI(connect4Player):  # TODO
 
             value = max(value, x)
 
-            #print("current MinMax value is", x, "compare to previous largest", temp_max_child, "current move", child)
+        
             # update the best child so far
             if x > temp_max_child:
                 temp_max_child = x
-
-                #print("update child move in root, current temp_max_child", child, temp_max_child)
                 move[:] = [child]
 
         print("Finish in time move")
